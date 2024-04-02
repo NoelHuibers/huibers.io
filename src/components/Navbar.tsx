@@ -3,9 +3,29 @@ import { useState } from "react";
 import { FaBars } from "react-icons/fa";
 import Logo from "./Logo";
 import NavbarItems from "./NavbarItems";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
+
+  const drawerVariants = {
+    open: {
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 30,
+      },
+    },
+    closed: {
+      x: "100%",
+      transition: {
+        type: "spring",
+        stiffness: 300,
+        damping: 30,
+      },
+    },
+  };
 
   return (
     <div className="fixed left-0 top-0 z-50 w-full  bg-opacity-75 px-6 py-4 backdrop-blur-lg sm:flex sm:items-center sm:justify-between sm:bg-transparent sm:backdrop-blur-none">
@@ -18,10 +38,18 @@ const Navbar = () => {
           <FaBars className="text-slate-100" />
         </button>
       </div>
-      <nav
-        className={`${isNavExpanded ? "flex" : "hidden"} absolute right-0 top-full mt-2 flex-col items-end  px-4 py-2 shadow-md sm:static sm:top-auto sm:mt-0 sm:flex sm:w-auto sm:flex-row sm:items-center sm:justify-end sm:space-x-4 sm:bg-transparent sm:p-0 sm:shadow-none`}
-      >
-        <NavbarItems />
+      <nav>
+        <div className="hidden flex-row items-center justify-end space-x-4 sm:flex">
+          <NavbarItems />
+        </div>
+        <motion.div
+          initial="closed"
+          animate={isNavExpanded ? "open" : "closed"}
+          variants={drawerVariants}
+          className="absolute right-0 top-full mt-2 flex w-full max-w-xs flex-col space-y-1 shadow-md sm:hidden"
+        >
+          <NavbarItems />
+        </motion.div>
       </nav>
     </div>
   );

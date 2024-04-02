@@ -22,7 +22,7 @@ const NavbarItems = () => {
         rel="noopener noreferrer"
         title="LinkedIn"
       >
-        <FaLinkedinIn />
+        <FaLinkedinIn className="text-xl" />
       </a>
       <a
         href="https://github.com/NoelHuibers"
@@ -31,7 +31,7 @@ const NavbarItems = () => {
         rel="noopener noreferrer"
         title="GitHub"
       >
-        <FaGithub />
+        <FaGithub className="text-xl" />
       </a>
     </>
   );
