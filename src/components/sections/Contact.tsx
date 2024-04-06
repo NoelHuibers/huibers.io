@@ -3,6 +3,17 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { sendEmail } from "~/lib/sendEmail";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormItem,
+  FormLabel,
+  FormField,
+  FormMessage,
+} from "../ui/form";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 
 const contactFormSchema = z.object({
   name: z.string().trim().min(1, "Name is required"),
@@ -14,12 +25,13 @@ const contactFormSchema = z.object({
 export type ContactFormData = z.output<typeof contactFormSchema>;
 
 const ContactForm = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ContactFormData>({
+  const form = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
   });
 
   const onSubmit = async (data: ContactFormData) => {
@@ -30,55 +42,55 @@ const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <div>
-        <label htmlFor="name" className="block">
-          Name
-        </label>
-        <input id="name" {...register("name")} className="w-full border p-2" />
-        {errors.name && <p className="text-red-500">{errors.name.message}</p>}
-      </div>
-
-      <div>
-        <label htmlFor="email" className="block">
-          Email
-        </label>
-        <input
-          id="email"
-          {...register("email")}
-          className="w-full border p-2"
+    <Form {...form}>
+      <form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
+        <div className="flex gap-2">
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormLabel>Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="" {...field} />
+                </FormControl>
+                <FormDescription>Your first name.</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input placeholder="" {...field} />
+                </FormControl>
+                <FormDescription>Your Email</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        <FormField
+          control={form.control}
+          name="message"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Message</FormLabel>
+              <FormControl>
+                <Input placeholder="" {...field} />
+              </FormControl>
+              <FormDescription>Your Message.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
-      </div>
-
-      <div>
-        <label htmlFor="message" className="block">
-          Message
-        </label>
-        <textarea
-          id="message"
-          {...register("message")}
-          className="w-full border p-2"
-        />
-        {errors.message && (
-          <p className="text-red-500">{errors.message.message}</p>
-        )}
-      </div>
-
-      <input
-        type="text"
-        className="hidden"
-        {...register("honeypot")}
-        aria-hidden="true"
-      />
-
-      <button
-        type="submit"
-        className="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
-      >
-        Submit
-      </button>
-    </form>
+        <Button type="submit">Submit</Button>
+      </form>
+    </Form>
   );
 };
 
