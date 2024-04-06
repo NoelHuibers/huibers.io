@@ -5,13 +5,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { sendEmail } from "~/lib/sendEmail";
 
 const contactFormSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email("Invalid email address"),
+  name: z.string().trim().min(1, "Name is required"),
+  email: z.string().trim().email("Invalid email address"),
   honeypot: z.string().optional(),
   message: z.string().min(1, "Message is required"),
 });
 
-export type ContactFormData = z.infer<typeof contactFormSchema>;
+export type ContactFormData = z.output<typeof contactFormSchema>;
 
 const ContactForm = () => {
   const {
