@@ -1,5 +1,6 @@
 import MainAnimation from "~/components/Animation";
 import Navbar from "~/components/Navbar";
+import ContactForm from "~/components/sections/Contact";
 
 export default function HomePage() {
   return (
@@ -7,9 +8,15 @@ export default function HomePage() {
       <Navbar />
       <section
         id="main"
-        className="bg-blueN z-0 flex h-screen w-screen items-center justify-center"
+        className="z-0 flex h-screen w-screen items-center justify-center bg-blueN"
       >
         <MainAnimation />
+      </section>
+      <section
+        id="contact"
+        className="z-0 flex h-screen w-screen items-center justify-center bg-blueN"
+      >
+        <ContactForm />
       </section>
     </main>
   );
