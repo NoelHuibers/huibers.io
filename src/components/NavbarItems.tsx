@@ -1,18 +1,60 @@
+"use client";
+import { useEffect, useState } from "react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
 
 const NavbarItems = () => {
+  const [activeId, setActiveId] = useState("main");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-50% 0px -50% 0px" },
+    );
+
+    document.querySelectorAll("section[id]").forEach((section) => {
+      observer.observe(section);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  const enabledColour =
+    "text-lightBlueN hover:text-redN active:text-lightBlueN";
+  const disabledColour =
+    "text-slate-100 hover:text-redN active:text-lightBlueN";
+
   return (
     <>
-      <a href="#main" className="hover:text-redN text-slate-100">
+      <a
+        href="#main"
+        className={activeId === "main" ? enabledColour : disabledColour}
+      >
         .main()
       </a>
-      <a href="#work" className="hover:text-redN text-slate-100">
+      <a
+        href="#work"
+        className={activeId === "work" ? enabledColour : disabledColour}
+      >
         .work()
       </a>
-      <a href="#about" className="hover:text-redN text-slate-100">
+      <a
+        href="#about"
+        className={activeId === "about" ? enabledColour : disabledColour}
+      >
         .about()
       </a>
-      <a href="#contact" className="hover:text-redN text-slate-100">
+      <a
+        href="#contact"
+        className={activeId === "contact" ? enabledColour : disabledColour}
+      >
         .contact()
       </a>
       <a
