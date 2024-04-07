@@ -12,7 +12,7 @@ const About = () => {
       <div className="flex flex-row items-center space-x-2">
         <p className="text-slate-50">
           <a
-            href="https://huibers.io/old"
+            href="https://huibersold.vercel.app/"
             className=" hover:text-redN"
             target="_blank"
             rel="noreferrer"
