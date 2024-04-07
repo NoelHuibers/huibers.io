@@ -19,7 +19,7 @@ const Cursor = () => {
     <motion.div
       variants={cursorVariants}
       animate="blinking"
-      className="inline-block h-4 w-[1px] bg-slate-50 sm:h-9"
+      className="inline-block h-4 w-[1px] bg-slate-50 sm:h-7"
     />
   );
 };

@@ -1,6 +1,7 @@
 "use client";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { useEffect } from "react";
+import Cursor from "./Cursor";
 
 const RedoAnimText = () => {
   const textIndex = useMotionValue(0);
@@ -43,7 +44,12 @@ const RedoAnimText = () => {
     });
   }, [count, textIndex, texts.length, updatedThisRound]);
 
-  return <motion.span className="inline">{displayText}</motion.span>;
+  return (
+    <>
+      <motion.span className="inline">{displayText}</motion.span>
+      <Cursor />
+    </>
+  );
 };
 
 export default RedoAnimText;
