@@ -1,12 +1,11 @@
 "use client";
-import { z } from "zod";
+import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { sendEmail } from "~/lib/sendEmail";
+import { useFormState } from "react-dom";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormItem,
   FormLabel,
   FormField,
@@ -14,66 +13,79 @@ import {
 } from "../ui/form";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-
-const contactFormSchema = z.object({
-  name: z.string().trim().min(1, "Name is required"),
-  email: z.string().trim().email("Invalid email address"),
-  honeypot: z.string().optional(),
-  message: z.string().min(1, "Message is required"),
-});
-
-export type ContactFormData = z.output<typeof contactFormSchema>;
+import { onSubmitAction } from "~/lib/formSubmit";
+import {
+  contactFormSchema,
+  type ContactFormData,
+} from "~/types/contactFormSchema";
 
 const ContactForm = () => {
+  const [state, formAction] = useFormState(onSubmitAction, {
+    message: "",
+  });
+
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
     defaultValues: {
       name: "",
       email: "",
       message: "",
+      ...(state?.fields ?? {}),
     },
   });
 
-  const onSubmit = async (data: ContactFormData) => {
-    if (data.honeypot) {
-      return;
-    }
-    await sendEmail(data.name, data.email, data.message);
-  };
+  const formRef = useRef<HTMLFormElement>(null);
 
   return (
     <Form {...form}>
-      <form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="flex gap-2">
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel>Name</FormLabel>
-                <FormControl>
-                  <Input placeholder="" {...field} />
-                </FormControl>
-                <FormDescription>Your first name.</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem className="w-full">
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input placeholder="" {...field} />
-                </FormControl>
-                <FormDescription>Your Email</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+      <form
+        className="relative w-10/12 space-y-4 rounded-lg bg-slate-50 p-8 text-xl sm:w-8/12 sm:text-2xl"
+        action={formAction}
+        ref={formRef}
+        onSubmit={(evt) => {
+          evt.preventDefault();
+          void form.handleSubmit(() => {
+            formAction(new FormData(formRef.current!));
+          })(evt);
+        }}
+      >
+        <div className="absolute left-[-0.875rem] flex h-12 w-4/6 min-w-fit items-center rounded-r-full rounded-t-full bg-redN">
+          <div className="absolute top-11 h-6 w-3.5 rounded-b-full bg-redN"></div>
+          <div className="absolute top-12 z-10 h-6 w-3.5 rounded-l-full bg-[#d43346]"></div>
+          <h2 className="pl-6 pr-2 text-2xl text-white sm:text-4xl">
+            contactForm &#123;
+          </h2>
         </div>
+        <div className="h-12" />
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem className="w-full">
+              <FormLabel>Name</FormLabel>
+              <FormControl>
+                <Input placeholder="name: z.string().min(1);" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem className="w-full">
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="email: z.string().trim().email();"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="message"
@@ -81,14 +93,27 @@ const ContactForm = () => {
             <FormItem>
               <FormLabel>Message</FormLabel>
               <FormControl>
-                <Input placeholder="" {...field} />
+                <Input placeholder="message: z.string().min(1);" {...field} />
               </FormControl>
-              <FormDescription>Your Message.</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <FormField
+          control={form.control}
+          name="honeypot"
+          render={({ field }) => (
+            <FormItem className="hidden">
+              <FormLabel>Honeypot</FormLabel>
+              <FormControl>
+                <Input type="text" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">Submit()</Button>
+        <p className="text-redN">&#125;</p>
       </form>
     </Form>
   );

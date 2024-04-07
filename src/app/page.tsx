@@ -1,20 +1,27 @@
 import MainAnimation from "~/components/Animation";
 import Navbar from "~/components/Navbar";
+import About from "~/components/sections/About/About";
 import ContactForm from "~/components/sections/Contact";
 
 export default function HomePage() {
   return (
-    <main className="w-screen">
+    <main>
       <Navbar />
       <section
         id="main"
-        className="z-0 flex h-screen w-screen items-center justify-center bg-blueN"
+        className="flex h-screen items-center justify-center bg-blueN"
       >
         <MainAnimation />
       </section>
       <section
+        id="about"
+        className="flex h-screen items-center justify-center bg-blueN"
+      >
+        <About />
+      </section>
+      <section
         id="contact"
-        className="z-0 flex h-screen w-screen items-center justify-center bg-blueN"
+        className="flex min-h-screen items-center justify-center bg-blueN py-8"
       >
         <ContactForm />
       </section>
