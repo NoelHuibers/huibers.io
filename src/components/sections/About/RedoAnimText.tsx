@@ -5,10 +5,10 @@ import { useEffect } from "react";
 const RedoAnimText = () => {
   const textIndex = useMotionValue(0);
   const texts = [
-    "Hello I'm Noel Huibers.",
-    "Servus ich bin Noel Huibers.",
-    "Salve nomen meum est Noel Huibers.",
-    "Hola mi nombre es Noel Huibers.",
+    "Hello, I'm Noel Huibers.",
+    "Servus, ich bin Noel Huibers.",
+    "Salve, nomen meum est Noel Huibers.",
+    "Hola me llamo Noel Huibers.",
   ];
 
   const baseText = useTransform(textIndex, (latest) => texts[latest] ?? "");
