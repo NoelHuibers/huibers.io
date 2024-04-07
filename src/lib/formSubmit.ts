@@ -29,7 +29,7 @@ export async function onSubmitAction(
     };
   }
 
-  if (parsed.data.honeypot !== undefined) {
+  if (parsed.data.honeypot !== undefined && parsed.data.honeypot !== "") {
     return {
       message: "Invalid email",
       fields: parsed.data,
@@ -38,5 +38,5 @@ export async function onSubmitAction(
 
   await sendEmail(parsed.data.name, parsed.data.email, parsed.data.message);
 
-  return { message: "Email send" };
+  return { message: "Success" };
 }

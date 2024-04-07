@@ -1,5 +1,6 @@
 "use client";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFormState } from "react-dom";
@@ -36,6 +37,19 @@ const ContactForm = () => {
   });
 
   const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    if (form === null) return;
+    if (state?.message === "Success") {
+      toast.success("E-Mail send sucessfully.", { duration: 5000 });
+      form.reset();
+      state.message = "";
+    } else if (state?.message === "Invalid form data") {
+      toast.error("Invalid form data. Please check the fields.");
+    } else if (state?.message === "Invalid email") {
+      toast.error("Invalid email. Please check the email field.");
+    }
+  }, [form, state]);
 
   return (
     <Form {...form}>

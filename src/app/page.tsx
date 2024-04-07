@@ -2,6 +2,7 @@ import MainAnimation from "~/components/Animation";
 import Navbar from "~/components/Navbar";
 import About from "~/components/sections/About/About";
 import ContactForm from "~/components/sections/Contact";
+import { Toaster } from "sonner";
 
 export default function HomePage() {
   return (
@@ -25,6 +26,7 @@ export default function HomePage() {
       >
         <ContactForm />
       </section>
+      <Toaster />
     </main>
   );
 }
