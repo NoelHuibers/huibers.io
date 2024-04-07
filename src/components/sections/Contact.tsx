@@ -18,6 +18,7 @@ import {
   contactFormSchema,
   type ContactFormData,
 } from "~/types/contactFormSchema";
+import { Textarea } from "../ui/textarea";
 
 const ContactForm = () => {
   const [state, formAction] = useFormState(onSubmitAction, {
@@ -93,7 +94,10 @@ const ContactForm = () => {
             <FormItem>
               <FormLabel>Message</FormLabel>
               <FormControl>
-                <Input placeholder="message: z.string().min(1);" {...field} />
+                <Textarea
+                  placeholder="message: z.string().min(1);"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
