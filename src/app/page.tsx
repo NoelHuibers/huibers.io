@@ -3,6 +3,7 @@ import Navbar from "~/components/Navbar";
 import About from "~/components/sections/About/About";
 import ContactForm from "~/components/sections/Contact";
 import { Toaster } from "sonner";
+import Work from "~/components/sections/Work/Work";
 
 export default function HomePage() {
   return (
@@ -13,6 +14,12 @@ export default function HomePage() {
         className="flex h-screen items-center justify-center bg-blueN"
       >
         <MainAnimation />
+      </section>
+      <section
+        id="work"
+        className="flex h-screen items-center justify-center bg-blueN"
+      >
+        <Work />
       </section>
       <section
         id="about"

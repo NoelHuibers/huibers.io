@@ -1,5 +1,4 @@
 import RedoAnimText from "./RedoAnimText";
-import Cursor from "./Cursor";
 
 const AnimText = () => {
   return (
