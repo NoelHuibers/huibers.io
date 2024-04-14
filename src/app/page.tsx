@@ -1,9 +1,9 @@
-import MainAnimation from "~/components/Animation";
-import Navbar from "~/components/Navbar";
-import About from "~/components/sections/About/About";
-import ContactForm from "~/components/sections/Contact";
+import MainAnimation from "~/components/navbar/Animation";
+import Navbar from "~/components/navbar/Navbar";
+import About from "~/components/about/About";
+import ContactForm from "~/components/Contact";
 import { Toaster } from "sonner";
-import Work from "~/components/sections/Work/Work";
+import Work from "~/components/work/Work";
 
 export default function HomePage() {
   return (

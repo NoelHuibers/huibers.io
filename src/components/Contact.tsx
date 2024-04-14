@@ -11,15 +11,15 @@ import {
   FormLabel,
   FormField,
   FormMessage,
-} from "../ui/form";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+} from "./ui/form";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
 import { onSubmitAction } from "~/lib/formSubmit";
 import {
   contactFormSchema,
   type ContactFormData,
 } from "~/types/contactFormSchema";
-import { Textarea } from "../ui/textarea";
+import { Textarea } from "./ui/textarea";
 
 const ContactForm = () => {
   const [state, formAction] = useFormState(onSubmitAction, {
