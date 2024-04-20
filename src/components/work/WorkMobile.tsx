@@ -56,7 +56,7 @@ const Deck = () => {
     await card.control.start({ y: -220, transition: { duration: 3 } });
     await card.control.start({
       y: -30,
-      x: 30,
+      x: 15,
       transition: { duration: 2 },
       zIndex: 10,
     });
@@ -65,7 +65,7 @@ const Deck = () => {
   const animationTwo = async (card: Card) => {
     await card.control.start({
       y: -20,
-      x: 20,
+      x: 5,
       transition: { duration: 2, delay: 3 },
       zIndex: 20,
     });
@@ -74,7 +74,7 @@ const Deck = () => {
   const animationThree = async (card: Card) => {
     await card.control.start({
       y: -10,
-      x: 10,
+      x: -5,
       transition: { duration: 2, delay: 3 },
       zIndex: 30,
     });
@@ -83,7 +83,7 @@ const Deck = () => {
   const animationFour = async (card: Card) => {
     await card.control.start({
       y: 0,
-      x: 0,
+      x: -15,
       transition: { duration: 2, delay: 3 },
       zIndex: 40,
     });

@@ -22,6 +22,9 @@ const config = {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
+      zIndex: {
+        "100": "100",
+      },
       colors: {
         redN: "#ff3e55",
         blueN: "#021d45",

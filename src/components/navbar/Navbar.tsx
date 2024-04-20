@@ -28,7 +28,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed left-0 top-0 z-50 w-full  bg-opacity-75 px-6 py-4 backdrop-blur-lg sm:flex sm:items-center sm:justify-between sm:bg-transparent sm:backdrop-blur-none">
+    <div className="z-100 fixed left-0 top-0 w-full  bg-opacity-75 px-6 py-4 backdrop-blur-lg sm:flex sm:items-center sm:justify-between sm:bg-transparent sm:backdrop-blur-none">
       <div className="flex w-full items-center justify-between lg:w-auto">
         <Logo />
         <Hamburger
