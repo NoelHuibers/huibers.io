@@ -18,7 +18,10 @@ const Work = () => {
           />
         ))}
       </div>
-      <WorkMobile />
+
+      <div className="flex items-center justify-center sm:hidden">
+        <WorkMobile />
+      </div>
     </>
   );
 };

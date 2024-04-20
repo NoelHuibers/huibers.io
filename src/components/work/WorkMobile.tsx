@@ -1,55 +1,149 @@
 "use client";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import TransformCard from "./TransformCard";
-import Cards from "./Cards";
+import { type AnimationControls, motion, useAnimation } from "framer-motion";
 
-const WorkMobile = () => {
-  const initialPositions = [
-    { top: 0, right: 0, zIndex: 40 },
-    { top: -10, right: -10, zIndex: 30 },
-    { top: -20, right: -20, zIndex: 20 },
-    { top: -30, right: -30, zIndex: 10 },
-  ];
+type Card = {
+  id: number;
+  control: AnimationControls;
+  zIndex: number;
+  title?: string;
+  content?: string;
+  github?: string;
+  website?: string;
+};
 
-  const [positions, setPositions] = useState(initialPositions);
+const Deck = () => {
+  const [cards] = useState<Card[]>([
+    {
+      id: 0,
+      control: useAnimation(),
+      zIndex: 40,
+      title: "Nueslify",
+      content: "An AI Radio using Spotify",
+      github: "https://github.com/NoelHuibers/nueslify",
+      website: "https://nueslify.com/",
+    },
+    {
+      id: 1,
+      control: useAnimation(),
+      zIndex: 30,
+      title: "Hashiwokakero",
+      content: "Japanese Puzzle Game",
+      github: "https://github.com/NoelHuibers/Hashiwokakero",
+      website: "https://hashi.rs/",
+    },
+    {
+      id: 2,
+      control: useAnimation(),
+      zIndex: 20,
+      title: "Landesgartenschau",
+      content: "An App for Höxter 2023",
+      github: "https://github.com/NoelHuibers/LGS2023",
+    },
+    {
+      id: 3,
+      control: useAnimation(),
+      zIndex: 10,
+      title: "Stockticker",
+      content: "Track the DAX and Dow Jones",
+      github: "https://github.com/NoelHuibers/stocki",
+    },
+  ]);
+
+  const animationUp = async (card: Card) => {
+    await card.control.start({ zIndex: 50 });
+    await card.control.start({ y: -220, transition: { duration: 3 } });
+    await card.control.start({
+      y: -30,
+      x: 30,
+      transition: { duration: 2 },
+      zIndex: 10,
+    });
+  };
+
+  const animationTwo = async (card: Card) => {
+    await card.control.start({
+      y: -20,
+      x: 20,
+      transition: { duration: 2, delay: 3 },
+      zIndex: 20,
+    });
+  };
+
+  const animationThree = async (card: Card) => {
+    await card.control.start({
+      y: -10,
+      x: 10,
+      transition: { duration: 2, delay: 3 },
+      zIndex: 30,
+    });
+  };
+
+  const animationFour = async (card: Card) => {
+    await card.control.start({
+      y: 0,
+      x: 0,
+      transition: { duration: 2, delay: 3 },
+      zIndex: 40,
+    });
+  };
 
   useEffect(() => {
+    const startAnimations = () => {
+      cards.forEach((card) => {
+        switch (card.id) {
+          case 0:
+            void animationUp(card);
+            card.id = 1;
+            break;
+          case 1:
+            void animationTwo(card);
+            card.id = 2;
+            break;
+          case 2:
+            void animationThree(card);
+            card.id = 3;
+            break;
+          case 3:
+            void animationFour(card);
+            card.id = 0;
+            break;
+          default:
+            break;
+        }
+      });
+    };
+
+    startAnimations();
+
     const interval = setInterval(() => {
-      setPositions((prev) => [
-        { ...prev[1]! },
-        { ...prev[2]! },
-        { ...prev[3]! },
-        { ...prev[0]! },
-      ]);
-    }, 3000);
+      startAnimations();
+    }, 8000);
+
     return () => clearInterval(interval);
-  }, []);
+  }, [cards]);
 
   return (
-    <div className="flex flex-col space-y-[-180px] sm:hidden">
-      {positions.map((pos, index) => (
+    <>
+      {cards.map((card) => (
         <motion.div
-          key={index}
-          className="relative"
-          animate={{
-            top: `${pos.top}px`,
-            right: `${pos.right}px`,
-            zIndex: pos.zIndex,
-          }}
-          transition={{ type: "spring", stiffness: 260, damping: 20 }}
+          className="absolute self-center"
+          key={card.id}
+          style={{ zIndex: card.zIndex }}
+          animate={card.control}
         >
           <TransformCard
-            title={Cards[index]!.title}
-            content={Cards[index]!.content}
+            title={card.title ?? ""}
+            content={card.content ?? ""}
             rotate={0}
-            github={Cards[index]!.github}
-            website={Cards[index]!.website}
+            github={card.github ?? ""}
+            website={card.website ?? ""}
           />
         </motion.div>
       ))}
-    </div>
+    </>
   );
 };
 
-export default WorkMobile;
+export default Deck;

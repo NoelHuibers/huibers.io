@@ -23,7 +23,7 @@ const TransformCard = (props: {
       style={{ rotate: props.rotate }}
       whileHover={{ rotate: 0, scale: 1.1 }}
     >
-      <Card className="w-full">
+      <Card className="w-60">
         <CardHeader>
           <CardTitle>{props.title}</CardTitle>
           <CardDescription>{props.content}</CardDescription>
