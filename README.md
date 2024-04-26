@@ -7,7 +7,8 @@ Welcome to the repository for my portfolio website, a dynamic and interactive pl
 - **React Server Components:** Enhances performance by allowing React components to render on the server.
 - **Next.js:** Provides server-side rendering and generates static websites for faster load times.
 - **TailwindCSS:** A utility-first CSS framework for rapid UI development.
-- **Framer Motion:** Used for adding intuitive animations to the UI.
+- **Framer Motion:** A powerful library for creating simple and complex animations, adding fluid interactivity to the user interface.
+- **Lottie:** Integrates large-scale, complex animations seamlessly into the web platform, enriching the visual impact of the website.
 - **shadcn & Sonner:** Implements advanced UI patterns and real-time features.
 - **react-hook-form:** Manages form state and validation on both the client and server sides.
 
