@@ -7,9 +7,9 @@ type Card = {
   id: number;
   control: AnimationControls;
   zIndex: number;
-  title?: string;
-  content?: string;
-  github?: string;
+  title: string;
+  content: string;
+  github: string;
   website?: string;
 };
 
@@ -134,10 +134,10 @@ const Deck = () => {
           animate={card.control}
         >
           <TransformCard
-            title={card.title ?? ""}
-            content={card.content ?? ""}
+            title={card.title}
+            content={card.content}
             rotate={0}
-            github={card.github ?? ""}
+            github={card.github}
             website={card.website ?? null}
           />
         </motion.div>
