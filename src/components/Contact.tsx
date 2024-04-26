@@ -54,7 +54,7 @@ const ContactForm = () => {
   return (
     <Form {...form}>
       <form
-        className="relative w-10/12 space-y-4 rounded-lg bg-slate-50 p-8 text-xl sm:w-8/12 sm:text-2xl"
+        className="relative w-10/12 space-y-4 rounded-lg bg-slate-50 p-8 text-xl lg:w-8/12 lg:text-2xl"
         action={formAction}
         ref={formRef}
         onSubmit={(evt) => {
@@ -67,7 +67,7 @@ const ContactForm = () => {
         <div className="absolute left-[-0.875rem] flex h-12 w-4/6 min-w-fit items-center rounded-r-full rounded-t-full bg-redN">
           <div className="absolute top-11 h-6 w-3.5 rounded-b-full bg-redN"></div>
           <div className="absolute top-12 z-10 h-6 w-3.5 rounded-l-full bg-[#d43346]"></div>
-          <h2 className="pl-6 pr-2 text-2xl text-white sm:text-4xl">
+          <h2 className="pl-6 pr-2 text-2xl text-white lg:text-4xl">
             contactForm &#123;
           </h2>
         </div>

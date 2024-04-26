@@ -6,7 +6,7 @@ import Cards from "./Cards";
 const Work = () => {
   return (
     <>
-      <div className="hidden flex-row justify-center space-x-[-60px] sm:flex">
+      <div className="hidden flex-row justify-center space-x-[-60px] lg:flex">
         {Cards.map((card, index) => (
           <TransformCard
             key={index}
@@ -19,7 +19,7 @@ const Work = () => {
         ))}
       </div>
 
-      <div className="flex items-center justify-center sm:hidden">
+      <div className="flex items-center justify-center lg:hidden">
         <WorkMobile />
       </div>
     </>

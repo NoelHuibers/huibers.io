@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
 
-const NavbarItems = () => {
+const NavbarItems = (props: { closeNav: () => void }) => {
+  const { closeNav } = props;
   const [activeId, setActiveId] = useState("main");
 
   useEffect(() => {
@@ -27,48 +28,52 @@ const NavbarItems = () => {
   }, []);
 
   const enabledColour =
-    "text-lightBlueN hover:text-redN active:text-lightBlueN";
+    "text-blueN hover:text-redN w-fit active:text-lightBlueN lg:text-lightBlueN lg:hover:text-redN lg:active:text-lightBlueN";
   const disabledColour =
-    "text-slate-100 hover:text-redN active:text-lightBlueN";
+    "text-blueN hover:text-redN w-fit active:text-lightBlueN lg:text-slate-100 lg:hover:text-redN lg:active:text-lightBlueN";
 
   return (
     <>
       <a
         href="#main"
         className={activeId === "main" ? enabledColour : disabledColour}
+        onClick={closeNav}
       >
         .main()
       </a>
       <a
         href="#work"
         className={activeId === "work" ? enabledColour : disabledColour}
+        onClick={closeNav}
       >
         .work()
       </a>
       <a
         href="#about"
         className={activeId === "about" ? enabledColour : disabledColour}
+        onClick={closeNav}
       >
         .about()
       </a>
       <a
         href="#contact"
         className={activeId === "contact" ? enabledColour : disabledColour}
+        onClick={closeNav}
       >
         .contact()
       </a>
       <a
         href="https://www.linkedin.com/in/huibers/"
-        className="text-redN hover:text-slate-100"
+        className="w-fit text-redN hover:text-blueN lg:hover:text-slate-100"
         target="_blank"
         rel="noopener noreferrer"
         title="LinkedIn"
       >
-        <FaLinkedinIn className="text-xl" />
+        <FaLinkedinIn className="my-0.5 text-xl lg:my-0" />
       </a>
       <a
         href="https://github.com/NoelHuibers"
-        className="text-redN hover:text-slate-100"
+        className="w-fit text-redN hover:text-blueN lg:hover:text-slate-100"
         target="_blank"
         rel="noopener noreferrer"
         title="GitHub"

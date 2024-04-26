@@ -2,7 +2,7 @@ import AnimText from "./AnimText";
 
 const About = () => {
   return (
-    <div className="w-1/2 space-y-2">
+    <div className="w-3/4 space-y-2 lg:w-1/2">
       <AnimText />
       <p className="text-slate-50">
         I am a dedicated Software Engineer based in Germany, currently pursuing

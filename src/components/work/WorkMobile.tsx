@@ -53,11 +53,11 @@ const Deck = () => {
 
   const animationUp = async (card: Card) => {
     await card.control.start({ zIndex: 50 });
-    await card.control.start({ y: -220, transition: { duration: 3 } });
+    await card.control.start({ y: -220, transition: { duration: 1.75 } });
     await card.control.start({
       y: -30,
       x: 15,
-      transition: { duration: 2 },
+      transition: { duration: 1.25 },
       zIndex: 10,
     });
   };
@@ -66,7 +66,7 @@ const Deck = () => {
     await card.control.start({
       y: -20,
       x: 5,
-      transition: { duration: 2, delay: 3 },
+      transition: { duration: 1.25, delay: 1.75 },
       zIndex: 20,
     });
   };
@@ -75,7 +75,7 @@ const Deck = () => {
     await card.control.start({
       y: -10,
       x: -5,
-      transition: { duration: 2, delay: 3 },
+      transition: { duration: 1.25, delay: 1.75 },
       zIndex: 30,
     });
   };
@@ -84,7 +84,7 @@ const Deck = () => {
     await card.control.start({
       y: 0,
       x: -15,
-      transition: { duration: 2, delay: 3 },
+      transition: { duration: 1.25, delay: 1.75 },
       zIndex: 40,
     });
   };
@@ -119,7 +119,7 @@ const Deck = () => {
 
     const interval = setInterval(() => {
       startAnimations();
-    }, 8000);
+    }, 6000);
 
     return () => clearInterval(interval);
   }, [cards]);
