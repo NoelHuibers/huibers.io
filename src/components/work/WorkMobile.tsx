@@ -138,7 +138,7 @@ const Deck = () => {
             content={card.content ?? ""}
             rotate={0}
             github={card.github ?? ""}
-            website={card.website ?? ""}
+            website={card.website ?? null}
           />
         </motion.div>
       ))}
