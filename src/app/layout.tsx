@@ -9,7 +9,7 @@ const inconsolata = Inconsolata({
 
 export const metadata = {
   title: "Huibers",
-  description: "Noel Huibers Portofolio Website",
+  description: "Noel Huibers Portfolio Website",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
