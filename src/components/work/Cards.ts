@@ -16,7 +16,7 @@ const Cards = [
   {
     title: "Landesgartenschau",
     content: "An App for Höxter 2023",
-    github: "https://github.com/NoelHuibers/LGS2023",
+    github: "https://github.com/NoelHuibers/Landesgartenschau2023",
     website: null,
     rotate: 5,
   },
