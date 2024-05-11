@@ -39,7 +39,7 @@ const Deck = () => {
       zIndex: 20,
       title: "Landesgartenschau",
       content: "An App for Höxter 2023",
-      github: "https://github.com/NoelHuibers/LGS2023",
+      github: "https://github.com/NoelHuibers/Landesgartenschau2023",
     },
     {
       id: 3,
