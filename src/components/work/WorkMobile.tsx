@@ -1,7 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
-import TransformCard from "./TransformCard";
 import { type AnimationControls, motion, useAnimation } from "framer-motion";
+import { useEffect, useState } from "react";
+import TransformCard from "./TransformCard";
 
 type Card = {
   id: number;
