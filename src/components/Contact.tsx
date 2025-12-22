@@ -62,7 +62,7 @@ const ContactForm = () => {
     <Form {...form}>
       <form
         ref={formRef}
-        className="flex flex-col gap-4"
+        className="relative w-10/12 space-y-4 rounded-lg bg-slate-50 p-8 text-xl lg:w-8/12 lg:text-2xl"
         onSubmit={(evt) => {
           evt.preventDefault();
           void form.handleSubmit(() => {
@@ -72,15 +72,22 @@ const ContactForm = () => {
           })(evt);
         }}
       >
-        <p className="text-yellowN">contactForm {"{"}</p>
+        <div className="bg-redN absolute -left-3.5 flex h-12 w-4/6 min-w-fit items-center rounded-t-full rounded-r-full">
+          <div className="bg-redN absolute top-11 h-6 w-3.5 rounded-b-full"></div>
+          <div className="absolute top-12 z-10 h-6 w-3.5 rounded-l-full bg-[#d43346]"></div>
+          <h2 className="pr-2 pl-6 text-2xl text-white lg:text-4xl">
+            contactForm &#123;
+          </h2>
+        </div>
+        <div className="h-12" />
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="w-full">
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input type="text" {...field} />
+                <Input placeholder="name: z.string().min(1);" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -90,10 +97,13 @@ const ContactForm = () => {
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="w-full">
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input type="email" {...field} />
+                <Input
+                  placeholder="email: z.string().trim().email();"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -106,7 +116,10 @@ const ContactForm = () => {
             <FormItem>
               <FormLabel>Message</FormLabel>
               <FormControl>
-                <Textarea {...field} />
+                <Textarea
+                  placeholder="message: z.string().min(1);"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
