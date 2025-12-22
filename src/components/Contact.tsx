@@ -1,7 +1,7 @@
 "use client";
+
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useRef } from "react";
-import { useFormState } from "react-dom";
+import { useActionState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { onSubmitAction } from "~/lib/formSubmit";
@@ -22,7 +22,7 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 
 const ContactForm = () => {
-  const [state, formAction] = useFormState(onSubmitAction, {
+  const [state, formAction] = useActionState(onSubmitAction, {
     message: "",
   });
 
@@ -40,12 +40,10 @@ const ContactForm = () => {
   const lastHandledMessage = useRef<string>("");
 
   useEffect(() => {
-    // Skip if we've already handled this message
     if (!state?.message || state.message === lastHandledMessage.current) {
       return;
     }
 
-    // Mark this message as handled
     lastHandledMessage.current = state.message;
 
     if (state.message === "Success") {
