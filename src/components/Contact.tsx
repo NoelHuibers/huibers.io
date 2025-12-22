@@ -64,7 +64,7 @@ const ContactForm = () => {
           })(evt);
         }}
       >
-        <div className="absolute left-[-0.875rem] flex h-12 w-4/6 min-w-fit items-center rounded-r-full rounded-t-full bg-redN">
+        <div className="absolute -left-3.5 flex h-12 w-4/6 min-w-fit items-center rounded-r-full rounded-t-full bg-redN">
           <div className="absolute top-11 h-6 w-3.5 rounded-b-full bg-redN"></div>
           <div className="absolute top-12 z-10 h-6 w-3.5 rounded-l-full bg-[#d43346]"></div>
           <h2 className="pl-6 pr-2 text-2xl text-white lg:text-4xl">
