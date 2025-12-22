@@ -1,7 +1,9 @@
+// ~/components/about/Cursor.tsx
 "use client";
-import { motion } from "framer-motion";
 
-const cursorVariants = {
+import { motion, type Variants } from "framer-motion";
+
+const cursorVariants: Variants = {
   blinking: {
     opacity: [0, 0, 1, 1],
     transition: {

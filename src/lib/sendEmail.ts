@@ -1,4 +1,6 @@
+// ~/lib/sendEmail.ts
 "use server";
+
 import nodemailer from "nodemailer";
 import { env } from "~/env";
 
@@ -21,6 +23,7 @@ export async function sendEmail(name: string, email: string, message: string) {
   try {
     await transporter.sendMail(mailOptions);
   } catch (error) {
+    console.log(error);
     throw new Error("Error sending email");
   }
 }

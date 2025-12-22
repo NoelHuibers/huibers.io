@@ -37,16 +37,23 @@ const ContactForm = () => {
   });
 
   const formRef = useRef<HTMLFormElement>(null);
+  const lastHandledMessage = useRef<string>("");
 
   useEffect(() => {
-    if (form === null) return;
-    if (state?.message === "Success") {
-      toast.success("E-Mail send sucessfully.", { duration: 5000 });
+    // Skip if we've already handled this message
+    if (!state?.message || state.message === lastHandledMessage.current) {
+      return;
+    }
+
+    // Mark this message as handled
+    lastHandledMessage.current = state.message;
+
+    if (state.message === "Success") {
+      toast.success("E-Mail sent successfully.", { duration: 5000 });
       form.reset();
-      state.message = "";
-    } else if (state?.message === "Invalid form data") {
+    } else if (state.message === "Invalid form data") {
       toast.error("Invalid form data. Please check the fields.");
-    } else if (state?.message === "Invalid email") {
+    } else if (state.message === "Invalid email") {
       toast.error("Invalid email. Please check the email field.");
     }
   }, [form, state]);
@@ -64,10 +71,10 @@ const ContactForm = () => {
           })(evt);
         }}
       >
-        <div className="absolute -left-3.5 flex h-12 w-4/6 min-w-fit items-center rounded-r-full rounded-t-full bg-redN">
-          <div className="absolute top-11 h-6 w-3.5 rounded-b-full bg-redN"></div>
+        <div className="bg-redN absolute -left-3.5 flex h-12 w-4/6 min-w-fit items-center rounded-t-full rounded-r-full">
+          <div className="bg-redN absolute top-11 h-6 w-3.5 rounded-b-full"></div>
           <div className="absolute top-12 z-10 h-6 w-3.5 rounded-l-full bg-[#d43346]"></div>
-          <h2 className="pl-6 pr-2 text-2xl text-white lg:text-4xl">
+          <h2 className="pr-2 pl-6 text-2xl text-white lg:text-4xl">
             contactForm &#123;
           </h2>
         </div>

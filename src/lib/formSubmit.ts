@@ -18,8 +18,9 @@ export async function onSubmitAction(
   if (!parsed.success) {
     const fields: Record<string, string> = {};
     for (const key of Object.keys(formData)) {
-      if (formData[key] !== undefined) {
-        fields[key] = formData[key]?.toString() ?? "";
+      const value = formData[key];
+      if (typeof value === "string") {
+        fields[key] = value;
       }
     }
     return {
