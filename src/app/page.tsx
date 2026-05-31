@@ -1,8 +1,8 @@
-import MainAnimation from "~/components/navbar/Animation";
-import Navbar from "~/components/navbar/Navbar";
+import { Toaster } from "sonner";
 import About from "~/components/about/About";
 import ContactForm from "~/components/Contact";
-import { Toaster } from "sonner";
+import MainAnimation from "~/components/navbar/Animation";
+import Navbar from "~/components/navbar/Navbar";
 import Work from "~/components/work/Work";
 
 export default function HomePage() {

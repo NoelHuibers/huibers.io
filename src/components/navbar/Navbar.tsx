@@ -33,7 +33,7 @@ const Navbar = () => {
         className={
           isNavExpanded
             ? "z-50 flex w-full items-center justify-between bg-transparent px-6 pt-4 pb-2 lg:w-auto lg:bg-transparent lg:backdrop-blur-none"
-            : "bg-opacity-75 flex w-full items-center justify-between px-6 pt-4 pb-2 backdrop-blur-lg lg:w-auto lg:bg-transparent lg:backdrop-blur-none"
+            : "flex w-full items-center justify-between bg-opacity-75 px-6 pt-4 pb-2 backdrop-blur-lg lg:w-auto lg:bg-transparent lg:backdrop-blur-none"
         }
       >
         <Logo isNavExpaned={isNavExpanded} />

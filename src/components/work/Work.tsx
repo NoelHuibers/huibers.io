@@ -1,15 +1,14 @@
-import React from "react";
+import Cards from "./Cards";
 import TransformCard from "./TransformCard";
 import WorkMobile from "./WorkMobile";
-import Cards from "./Cards";
 
 const Work = () => {
   return (
     <>
       <div className="hidden flex-row justify-center space-x-[-60px] lg:flex">
-        {Cards.map((card, index) => (
+        {Cards.map((card) => (
           <TransformCard
-            key={index}
+            key={card.title}
             title={card.title}
             content={card.content}
             rotate={card.rotate}

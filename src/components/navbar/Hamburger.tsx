@@ -38,6 +38,7 @@ const Hamburger = (props: { isOpen: boolean; toggle: () => void }) => {
 
   return (
     <button
+      type="button"
       onClick={props.toggle}
       className="flex h-6 w-8 flex-col items-center justify-between lg:hidden"
     >

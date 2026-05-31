@@ -13,7 +13,7 @@ const Logo = (props: { isNavExpaned: boolean }) => {
       </a>
       <a
         href="#"
-        className="hidden cursor-default text-3xl font-bold uppercase text-slate-100 lg:inline"
+        className="hidden cursor-default font-bold text-3xl text-slate-100 uppercase lg:inline"
       >
         Noel Huibers
       </a>
