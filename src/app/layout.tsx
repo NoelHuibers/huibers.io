@@ -1,6 +1,7 @@
 import "~/styles/globals.css";
 
 import { Inconsolata } from "next/font/google";
+import Footer from "~/components/Footer";
 
 const inconsolata = Inconsolata({
   subsets: ["latin"],
@@ -20,7 +21,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inconsolata.variable}`}>{children}</body>
+      <body className={`font-sans ${inconsolata.variable}`}>
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
